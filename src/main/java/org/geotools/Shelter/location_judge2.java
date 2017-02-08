@@ -32,8 +32,9 @@ public class location_judge2 {
      public static void main(String[] args) throws IOException, ParseException {
 
          //出力
-         File shelter_area = new File("/Users/jiao.xue/Desktop/files_full/master/shelters_area.csv");//避難所データ
+         File shelter_area = new File("/Users/jiao.xue/Desktop/files_full/master/shelter_area.csv");//避難所データ
          PrintWriter out= new PrintWriter(new OutputStreamWriter(new FileOutputStream(shelter_area , false), "SHIFT_JIS"));
+         out.write("Id,shelter,lon,lat"+"\n");
 
 
 
@@ -85,7 +86,7 @@ public class location_judge2 {
                  pro = its.next();
              }
              String id = String.valueOf(pro.getValue());
-             out.write(id);
+             //out.write(id);
 
              while (iter.hasNext()) {
                  Map.Entry  entry = (Map.Entry) iter.next();
@@ -93,7 +94,14 @@ public class location_judge2 {
                  String name = (String) entry.getValue();
 
                  if(point.within(poly)) {
+                     double lon=point.getX();
+                     double lat=point.getY();
+                     out.write(id);
                      out.write(","+name);
+                     out.write(","+lon);
+                     out.write(","+lat);
+                     out.write("\n");//
+
                      //System.out.println(id+": "+name);
                      //shelters.remove(point);
 
@@ -101,10 +109,10 @@ public class location_judge2 {
                      //id=feature.getID();
                  }
              }
-             out.write("\n");
+             //out.write("\n");
 
          }
-         features.close();
+        // features.close();
          out.close();
 
      }
