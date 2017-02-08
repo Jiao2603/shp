@@ -4,7 +4,7 @@ package org.geotools.Shelter;
  * Created by jiao.xue on 2017/02/08.
  * 一つ一つの小学校区から小学校区内の避難所を探す　
  * 実行回数：小学校区の数＊避難所の数
- * 問題：実行回数が多いかも
+ * 弱点：避難所ファイルの並び順により、実行回数が多いかもしてない
  */
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -31,6 +31,13 @@ public class location_judge2 {
 
      public static void main(String[] args) throws IOException, ParseException {
 
+         //出力
+         File shelter_area = new File("/Users/jiao.xue/Desktop/files_full/master/shelters_area.csv");//避難所データ
+         PrintWriter out= new PrintWriter(new OutputStreamWriter(new FileOutputStream(shelter_area , false), "SHIFT_JIS"));
+
+
+
+
          //避難所setを作る
          File shelter = new File("/Users/jiao.xue/Desktop/files_full/master/shelters.csv");//避難所データ
          BufferedReader shelter_info = new BufferedReader(new InputStreamReader(new FileInputStream(shelter), "UTF-8"));
@@ -51,7 +58,6 @@ public class location_judge2 {
          File file = new File("/Users/jiao.xue/Downloads/小学校区 2/小学校区コード有.shp");
          Map<String, Object> map = new HashMap<String, Object>();
          map.put("url", file.toURI().toURL());
-
          DataStore dataStore = DataStoreFinder.getDataStore(map);
 
          String typeName = dataStore.getTypeNames()[0];
@@ -63,10 +69,6 @@ public class location_judge2 {
          FeatureIterator<SimpleFeature> features = collection.features();
 
 
-         /* GeometryFactory gf = new GeometryFactory();
-         //Point point = gf.createPoint(new Coordinate(140.315407,38.226099));//test
-         Point point = gf.createPoint(new Coordinate(lon,lat));//test
-         String id="";*/
 
          while (features.hasNext()) {
              SimpleFeature feature = features.next();
@@ -83,6 +85,7 @@ public class location_judge2 {
                  pro = its.next();
              }
              String id = String.valueOf(pro.getValue());
+             out.write(id);
 
              while (iter.hasNext()) {
                  Map.Entry  entry = (Map.Entry) iter.next();
@@ -90,16 +93,19 @@ public class location_judge2 {
                  String name = (String) entry.getValue();
 
                  if(point.within(poly)) {
-                     System.out.println(id+": "+name);
+                     out.write(","+name);
+                     //System.out.println(id+": "+name);
                      //shelters.remove(point);
 
                      //System.out.println(id);//wkt
                      //id=feature.getID();
                  }
              }
+             out.write("\n");
 
-             }
+         }
          features.close();
+         out.close();
 
      }
 
