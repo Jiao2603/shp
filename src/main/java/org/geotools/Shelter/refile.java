@@ -37,6 +37,8 @@ public class refile {
     }
 
 
+
+
 //ファイルの後ろに追加
     public static void add(File inFile1, File out) {
         try {

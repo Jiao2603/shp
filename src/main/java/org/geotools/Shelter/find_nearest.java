@@ -441,17 +441,17 @@ public class find_nearest {
                 while ((line2 = hospital_info.readLine()) != null) {
                     if (midashi1 == true && midashi2 == true) {
                         String pair2[] = line2.split(",");
-                        output.write(pair1[2] + "," + pair2[2] + "," + "distance");
+                        output.write(pair1[1] + "," + pair2[1] + "," + "distance");
                         midashi1 = false;
                         break;
                     } else {
                         if (midashi2 == true) {
                             String pair2[] = line2.split(",");
 
-                            lon1 = Double.parseDouble(pair1[0]);
-                            la1 = Double.parseDouble(pair1[1]);
-                            lon2 = Double.parseDouble(pair2[0]);
-                            la2 = Double.parseDouble(pair2[1]);
+                            lon1 = Double.parseDouble(pair1[2]);
+                            la1 = Double.parseDouble(pair1[3]);
+                            lon2 = Double.parseDouble(pair2[2]);
+                            la2 = Double.parseDouble(pair2[3]);
 
                             // GeometryFactory gf = new GeometryFactory();
                             startPoints = gfs
@@ -464,7 +464,7 @@ public class find_nearest {
 
                             pathcosts = dijkstraShortestPathCost(starts, ends);//ノードの最短距離
 
-                            output.write("\n" + pair1[2] + "," + pair2[2] + "," + pathcosts);
+                            output.write("\n" + pair1[1] + "," + pair2[1] + "," + pathcosts);
                         } else {
                             String pair2[] = line2.split(",");
                             midashi2 = true;
