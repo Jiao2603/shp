@@ -39,6 +39,8 @@ public class location_judge {
          File file = new File("/Users/jiao.xue/Downloads/小学校区 2/小学校区コード有.shp");
 
          File shelter = new File("/Users/jiao.xue/Desktop/files_full/master/shelters_test.csv");//避難所データ
+         //File shelter = new File("/Users/jiao.xue/Dropbox/shelter/5mesh_lat_lon_mesh.csv");//避難所データ
+
          BufferedReader shelter_info = new BufferedReader(new InputStreamReader(new FileInputStream(shelter), "UTF-8"));
          String line;
          line = shelter_info.readLine();//第一行を飛ばす
@@ -53,6 +55,7 @@ public class location_judge {
                  System.out.println(location+": "+shelter_name);
              }
          }
+         shelter_info.close();
 
      }
 
@@ -107,6 +110,7 @@ public class location_judge {
 
         }
         features.close();
+        dataStore.dispose();
 
         return id;
     }
