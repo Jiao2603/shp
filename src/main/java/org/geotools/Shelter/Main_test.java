@@ -9,6 +9,11 @@ import java.util.ArrayList;
  * 5meshのリスト　小学校区内の　5thmesh
  * 全道路リンク.shp
  *
+ *
+ *
+ * 出力ファイル
+ * プログラム用の中間で作ったファイル（）：例：小学校区リストなど
+ *自分で名前をつけてください
  */
 public class Main_test {
     public static void main(String args[]) throws Exception {
@@ -60,7 +65,8 @@ public class Main_test {
             File mesh5_temp = new File("/Users/jiao.xue/Dropbox/shelter/5mesh_area_temp.csv");
             refile.select(mesh5, mesh5_temp, value);//小学校区内の5thmeshを抽出する
 
-            File destfilepath = new File("/Users/jiao.xue/Desktop/split_map/test.shp");//分割されたファイルを記録
+            File destfilepath = null;//分割されたファイルを記録
+            int i=0;//中間生成したShpのファイル番号を記録する
 
             BufferedReader mesh5_name = new BufferedReader(new InputStreamReader(new FileInputStream(mesh5_temp), "SHIFT_JIS"));//小学校区の２ndメッシュを探す
             String line1 = mesh5_name.readLine();//第一行を飛ば
@@ -76,9 +82,12 @@ public class Main_test {
             if (mesh2nd_list.size()==1){
                 String mesh2nd_value=mesh2nd_list.get(0);
                destfilepath=new File("/Users/jiao.xue/Desktop/split_map/out/" + mesh2nd_value + "_fig.shp");//分割された地図
-                System.out.println(mesh2nd_value );
+                //System.out.println(mesh2nd_value );
             }
-            else {split_map.slipt_Shape(full_shape,destfilepath,mesh2nd_list);
+            else {
+                destfilepath = new File("/Users/jiao.xue/Desktop/split_map/test/"+ i++ +"test.shp");//分割されたファイルを記録
+
+                split_map.slipt_Shape(full_shape,destfilepath,mesh2nd_list);
             }
             mesh5_name.close();
 
