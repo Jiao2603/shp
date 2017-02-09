@@ -55,7 +55,7 @@ public class Main_test {
         String value;
         String line;
         line = Id.readLine();//第一行を飛ばす
-        while ((line = Id.readLine()) != null) {
+        while ((line = Id.readLine()) != null) {//各小学校区を計算する
             String pair[] = line.split(",");
             value=pair[0];
 
@@ -65,6 +65,7 @@ public class Main_test {
             File mesh5_temp = new File("/Users/jiao.xue/Dropbox/shelter/5mesh_area_temp.csv");
             refile.select(mesh5, mesh5_temp, value);//小学校区内の5thmeshを抽出する
 
+            //地図を分割する
             File destfilepath = null;//分割されたファイルを記録
             int i=0;//中間生成したShpのファイル番号を記録する
 
@@ -85,11 +86,13 @@ public class Main_test {
                 //System.out.println(mesh2nd_value );
             }
             else {
-                destfilepath = new File("/Users/jiao.xue/Desktop/split_map/test/"+ i++ +"test.shp");//分割されたファイルを記録
+                destfilepath = new File("/Users/jiao.xue/Desktop/split_map/test/"+ ++i +"test.shp");//分割されたファイルを記録
 
                 split_map.slipt_Shape(full_shape,destfilepath,mesh2nd_list);
             }
             mesh5_name.close();
+
+
 
             File out_temp = new File("/Users/jiao.xue/Dropbox/shelter/out_temp1.csv");//全距離を計算する
             File out_temp2 = new File("/Users/jiao.xue/Dropbox/shelter/out_temp2.csv");//一番近い距離を取る

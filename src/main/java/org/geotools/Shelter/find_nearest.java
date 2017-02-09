@@ -109,6 +109,7 @@ public class find_nearest {
             //		+ end.getX() + " " + end.getY());
 
         }
+        filestore.dispose();
 
     }
 
