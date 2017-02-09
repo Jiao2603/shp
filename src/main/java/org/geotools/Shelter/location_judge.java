@@ -5,6 +5,8 @@ package org.geotools.Shelter;
  * 一つ一つの避難所が地図上の居場所を探す　
  * 実行回数：避難所の数
  * 弱点：Shpファイルを複数回開くと、ロックされます
+ * だから、使わない
+ * 少量なデータなら　使えます
  */
 
 import com.vividsolutions.jts.geom.Coordinate;
