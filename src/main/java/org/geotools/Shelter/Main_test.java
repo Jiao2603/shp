@@ -4,16 +4,15 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * Created by jiao.xue on 2017/02/08.
+ * Created by jiao.xue on 2017/02/22.
  * 入力：shelterのリスト　小学校区内の避難所
  * 5meshのリスト　小学校区内の　5thmesh
- * 全道路リンク.shp
+ * 分割された小学校区の地図　小学校区__fig.shp(例：EA2714304_fig
  *
  *
  *
  * 出力ファイル
- * プログラム用の中間で作ったファイル（）：例：小学校区リストなど
- *自分で名前をつけてください
+ * 全小学校区内の避難所と５次メッシュの距離
  */
 public class Main_test {
 
@@ -86,7 +85,7 @@ public class Main_test {
             File mesh5_temp = new File(Dir.getPath()+"/5mesh_area_temp.csv");
             refile.select(mesh5, mesh5_temp, value);//小学校区内の5thmeshを抽出する
 
-            //地図を分割する
+            /*//地図を分割する
             File destfilepath = null;//分割されたファイルを記録
             int i=0;//中間生成したShpのファイル番号を記録する
 
@@ -112,6 +111,10 @@ public class Main_test {
                 split_map.slipt_Shape(full_shape,destfilepath,mesh2nd_list);
             }
             mesh5_name.close();
+*/
+
+                        //分割された地図を利用する
+            File destfilepath = new File(roadDir.getPath()+"/out_school_area/" + value + "_fig.shp");//分割された地図
 
 
 

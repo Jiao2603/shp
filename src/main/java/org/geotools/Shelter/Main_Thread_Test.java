@@ -56,7 +56,7 @@ public class Main_Thread_Test extends Thread {
 
             output_list.write("Id");
             int cal=0;
-            while ((line = Id.readLine()) != null && cal<1000) {
+            while (cal<1000 && (line = Id.readLine())!= null) {
                 cal++;
                 output_list.write("\n"+line);
             }
@@ -146,7 +146,7 @@ public class Main_Thread_Test extends Thread {
             }
             if (mesh2nd_list.size()==1){
                 String mesh2nd_value=mesh2nd_list.get(0);
-                destfilepath=new File(roadDir.getPath()+"/out/" + mesh2nd_value + "_fig.shp");//分割された地図
+                destfilepath=new File(roadDir.getPath()+"/out/" + mesh2nd_value + m+"_fig.shp");//分割された地図
                 //System.out.println(mesh2nd_value );
             }
             else {
