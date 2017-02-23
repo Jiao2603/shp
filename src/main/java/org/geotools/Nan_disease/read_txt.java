@@ -28,14 +28,19 @@ public class read_txt {
                 if(pair.length>=79) {
                     output.write(pair[0]+",");
                     for(int i=52;i<79;i++) {
+                        //if (i==70){
+                          //  continue;
+                        //}
                         output.write(pair[i]+",");
+
                     }
-                    System.out.println(pair.length);
+                    //System.out.println(pair.length);
                 }
                 else if(pair.length>=52){
                     output.write(pair[0]+",");
                     for(int i=52;i<pair.length;i++) {
                         output.write(pair[i]+",");
+
                     }
                 }
                 else{
