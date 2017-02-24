@@ -42,7 +42,7 @@ public class split_school_area {
             File full_shape = new File(roadDir.getPath()+"/全道路リンク.shp");//全道路リンク
             File mesh5 = new File(Dir.getPath()+"/5mesh_area.csv");//location_judge_5meshで作った5meshのリスト　小学校区内の　5thmesh
 
-            File Id_list = new File(Dir.getPath()+"/Id_list_left.csv");
+            File Id_list = new File(Dir.getPath()+"/Id_list_map.csv");
 
             BufferedReader Id = new BufferedReader(new InputStreamReader(new FileInputStream(Id_list), "SHIFT_JIS"));
             String area_name;
